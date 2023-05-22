@@ -1,9 +1,10 @@
 const express = require("express"); // commonjs
 const path = require("path");
-// import express from "express"; // es modules
+require("dotenv").config(); // load bien moi truong
 
 const app = express(); // app express
-const port = 8080; // port
+const port = process.env.PORT || 8080; // port
+const hostname = process.env.HOST_NAME;
 
 // config template engine
 app.set("views", path.join(__dirname, "./views")); // khai bao noi luu tru template engine
@@ -23,6 +24,6 @@ app.get("/tuannam", (req, res) => {
   res.render("sample.ejs");
 });
 
-app.listen(port, () => {
+app.listen(port, hostname, () => {
   console.log(`App is running at port ${8080}`);
 });
