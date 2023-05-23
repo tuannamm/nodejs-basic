@@ -13,7 +13,7 @@ const hostname = process.env.HOST_NAME;
 configViewEngine(app);
 
 // khai bao route
-app.use("/test", webRoutes);
+app.use("/", webRoutes);
 
 app.listen(port, hostname, () => {
   console.log(`App is running at port ${8080}`);

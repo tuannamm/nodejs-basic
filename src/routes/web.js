@@ -1,18 +1,17 @@
 const express = require("express"); // commonjs
 const router = express.Router();
 
+const {
+  getHomepage,
+  getTest,
+  getTuanNam,
+} = require("../controllers/homeController");
+
 // khai bao route
-router.get("/", (req, res) => {
-  res.send("Hello World");
-});
+router.get("/", getHomepage);
 
-router.get("/test", (req, res) => {
-  res.send("Hello Tuan Nam");
-});
+router.get("/test", getTest);
 
-router.get("/tuannam", (req, res) => {
-  // res.send("<h1>Tuan Nam is the best</h1>");
-  res.render("sample.ejs");
-});
+router.get("/tuannam", getTuanNam);
 
 module.exports = router;
