@@ -2,16 +2,14 @@ const express = require("express"); // commonjs
 const path = require("path");
 require("dotenv").config(); // load bien moi truong
 
+const configViewEngine = require("./config/viewEngine");
+
 const app = express(); // app express
 const port = process.env.PORT || 8080; // port
 const hostname = process.env.HOST_NAME;
 
-// config template engine
-app.set("views", path.join(__dirname, "./views")); // khai bao noi luu tru template engine
-app.set("view engine", "ejs"); // khai bao kieu template
-
-// khai bao noi luu tru static file
-app.use(express.static(path.join(__dirname, "public")));
+// config template engine and static file
+configViewEngine(app);
 
 // khai bao route
 app.get("/", (req, res) => {
