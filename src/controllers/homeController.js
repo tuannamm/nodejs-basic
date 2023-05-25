@@ -1,5 +1,5 @@
 const getHomepage = (req, res) => {
-  res.send("Hello world");
+  return res.render("home.ejs");
 };
 
 const getTest = (req, res) => {
@@ -7,7 +7,7 @@ const getTest = (req, res) => {
 };
 
 const getTuanNam = (req, res) => {
-  res.render("sample.ejs");
+  res.send("Hello Tuan Nammmmm");
 };
 
 module.exports = {
