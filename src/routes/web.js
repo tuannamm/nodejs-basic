@@ -7,6 +7,7 @@ const {
   getTuanNam,
   postCreateUser,
   getCreatePage,
+  getUpdatePage,
 } = require("../controllers/homeController");
 
 // khai bao route
@@ -20,4 +21,5 @@ router.post("/create-user", postCreateUser);
 
 router.get("/create", getCreatePage);
 
+router.get("/update", getUpdatePage);
 module.exports = router;
