@@ -37,7 +37,7 @@
     <a href="/create">Create users</a>
   </div>
 
-  <di class="table-user-container">
+  <div class="table-user-container">
     <h1 class="title">User List</h1>
     <table>
       <tr>
@@ -54,13 +54,13 @@
           <td><%=listUsers[i].name %></td>
           <td><%=listUsers[i].city %></td>
           <td>
-            <button>Edit</button>
+            <a href="/update/<%=listUsers[i].id %>">Edit</a>
             <button>Delete</button>
           </td>
         </tr>
       <% } %>
       
     </table>
-  </di>
+  </div>
 </body>
 </html>
