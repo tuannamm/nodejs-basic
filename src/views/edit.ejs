@@ -13,9 +13,13 @@
     <a class="active">Update users</a>
   </div>
   <div class="form">
-    <form action="/create-user" method="post">
+    <form action="/update-user" method="post">
       <fieldset>
         <legend>Update a user</legend>
+        <div class="input-group d-none">
+          <label>Id: </label>
+          <input type="text" name="id" value="<%=user.id%>">
+        </div>
         <div class="input-group">
           <label>Email: </label>
           <input type="text" name="email" value="<%=user.email%>">

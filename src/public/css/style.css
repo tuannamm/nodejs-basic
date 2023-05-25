@@ -52,3 +52,7 @@ input {
   margin-left: 200px;
   background-color: #49dca6;
 }
+
+.d-none {
+  display: none;
+}
