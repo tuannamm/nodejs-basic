@@ -19,12 +19,6 @@ configViewEngine(app);
 // khai bao route
 app.use("/", webRoutes);
 
-// simple query
-// connection.query("SELECT * FROM Users", function (err, results, fields) {
-//   console.log("results", results);
-//   console.log("fields", fields);
-// });
-
 app.listen(port, hostname, () => {
   console.log(`App is running at port ${8080}`);
 });

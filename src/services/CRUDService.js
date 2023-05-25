@@ -30,9 +30,16 @@ const postUpdateUserById = async (id, email, name, city) => {
   );
 };
 
+const deleteUserById = async (id) => {
+  let [results, fields] = await connection.query(
+    `DELETE FROM Users WHERE id = ?`,
+    [id]
+  );
+};
 module.exports = {
   getAllUsers,
   postCreateNewUser,
   getUserById,
   postUpdateUserById,
+  deleteUserById,
 };
