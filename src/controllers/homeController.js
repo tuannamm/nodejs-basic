@@ -10,8 +10,14 @@ const getTuanNam = (req, res) => {
   res.send("Hello Tuan Nammmmm");
 };
 
+const postCreateUser = (req, res) => {
+  console.log("req.body", req.body);
+  res.send("Hello Tuan Nammmmm");
+};
+
 module.exports = {
   getHomepage,
   getTest,
   getTuanNam,
+  postCreateUser,
 };

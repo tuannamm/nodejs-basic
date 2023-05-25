@@ -39,6 +39,7 @@ input {
   margin: 0 auto;
   padding: 30px;
   font-size: 20px;
+  margin-top: 200px;
 }
 
 .input-group {
@@ -48,6 +49,6 @@ input {
 .btn-submit {
   border-radius: 5px;
   width: 50px;
-  margin-left: 150px;
-  background-color: #87f3cb;
+  margin-left: 200px;
+  background-color: #49dca6;
 }
