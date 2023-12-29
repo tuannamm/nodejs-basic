@@ -19,6 +19,14 @@ configViewEngine(app);
 // khai bao route
 app.use("/", webRoutes);
 
-app.listen(port, hostname, () => {
-  console.log(`App is running at port ${8080}`);
-});
+(async () => {
+  try {
+    await connection();
+    app.listen(port, hostname, () => {
+      console.log(`App is running at port ${port}`);
+    });
+  } catch (error) {
+    console.log("error connection database", error);
+  }
+})();
+
