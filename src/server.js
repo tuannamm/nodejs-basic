@@ -4,7 +4,8 @@ require("dotenv").config(); // load bien moi truong
 const configViewEngine = require("./config/viewEngine");
 const webRoutes = require("./routes/web");
 const connection = require("./config/database");
-const { default: mongoose } = require("mongoose");
+
+const Kitten = require("./models/Kitten");
 
 const app = express(); // app express
 const port = process.env.PORT || 8080; // port
@@ -20,13 +21,7 @@ configViewEngine(app);
 // khai bao route
 app.use("/", webRoutes);
 
-const kittySchema = new mongoose.Schema({
-  name: String
-})
-
-const Kitten = mongoose.model("Kitten", kittySchema);
-const cat = new Kitten({name: "Tuan Nam's cat"});
-
+const cat = new Kitten({name: "Tuan Nam's cat"}); 
 cat.save();
 
 (async () => {
