@@ -12,14 +12,12 @@ const {
 const User = require("../models/User");
 
 const getHomepage = async (req, res) => {
-  let results = [];
+  let results = await User.find({});
   return res.render("home.ejs", { listUsers: results });
 };
 
 const postCreateUser = async (req, res) => {
   let { email, name, city } = req.body;
-
-  // await postCreateNewUser(email, name, city);
 
   await User.create({
     email,
