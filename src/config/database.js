@@ -1,24 +1,22 @@
-const mysql = require("mysql2/promise");
 require("dotenv").config();
+const mongoose = require("mongoose");
 
-// create the connection to database
-// const connection = mysql.createConnection({
-//   host: process.env.DB_HOST,
-//   port: process.env.DB_PORT, // default 3306
-//   user: process.env.DB_USER,
-//   password: process.env.DB_PASSWORD,
-//   database: process.env.DB_NAME,
-// });
+// mặc định sẽ chỉ xuống database được đặt tên là test nếu không chỉ đỉnh kết nối database nào
 
-const connection = mysql.createPool({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT, // default 3306
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-});
+const connection = async() => {
+  try {
+    const options = {
+      user: process.env.DB_USER,
+      pass: process.env.DB_PASSWORD,
+      dbName: process.env.DB_NAME
+    };
+    console.log("connecting database");
+    await mongoose.connect(process.env.DB_HOST, options);
+    console.log("connect database success");
+  } catch (error) {
+    console.log("error connection database",error);
+  }
+}
+
 
 module.exports = connection;

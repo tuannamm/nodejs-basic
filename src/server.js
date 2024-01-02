@@ -5,6 +5,8 @@ const configViewEngine = require("./config/viewEngine");
 const webRoutes = require("./routes/web");
 const connection = require("./config/database");
 
+const Kitten = require("./models/Kitten");
+
 const app = express(); // app express
 const port = process.env.PORT || 8080; // port
 const hostname = process.env.HOST_NAME;
@@ -19,6 +21,17 @@ configViewEngine(app);
 // khai bao route
 app.use("/", webRoutes);
 
-app.listen(port, hostname, () => {
-  console.log(`App is running at port ${8080}`);
-});
+const cat = new Kitten({name: "Tuan Nam's cat"}); 
+cat.save();
+
+(async () => {
+  try {
+    await connection();
+    app.listen(port, hostname, () => {
+      console.log(`App is running at port ${port}`);
+    });
+  } catch (error) {
+    console.log("error connection database", error);
+  }
+})();
+
