@@ -1,5 +1,5 @@
 const express = require("express"); // commonjs
-const { getAllUsers } = require("../controllers/apiController");
+const { getAllUsers, postCreateUser } = require("../controllers/apiController");
 const routerAPI = express.Router();
 
 // khai bao route
@@ -12,5 +12,7 @@ routerAPI.get("/abc", (req, res) => {
 });
 
 routerAPI.get("/users", getAllUsers);
+
+routerAPI.post("/user", postCreateUser);
 
 module.exports = routerAPI;
