@@ -24,6 +24,7 @@
     "express-fileupload": "^1.4.3",
     "mongoose": "^8.0.3",
     "mysql2": "2.3.3",
+    "path": "^0.12.7",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
