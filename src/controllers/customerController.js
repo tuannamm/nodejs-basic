@@ -1,6 +1,6 @@
 const { uploadSingleFile } = require("../services/fileService");
 
-const { createCustomerService, createListCustomersService, getAllCustomersService } = require("../services/customerService");
+const { createCustomerService, createListCustomersService, getAllCustomersService, updateCustomerService } = require("../services/customerService");
 
 const getAllCustomers = async (req, res) => {
   const result = await getAllCustomersService();
@@ -35,8 +35,18 @@ const postCreateListCustomers = async (req, res) => {
     })
 }
 
+const putUpdateCustomer = async (req, res) => {
+  const result = await updateCustomerService(req.body)
+  return res.status(200).json({
+    errorCode: result ? 0 : -1,
+    message: result ? "Update customer success" : "Update customer failed",
+    data: result
+  })
+}
+
 module.exports = {
   getAllCustomers,
   postCreateCustomer,
-  postCreateListCustomers
+  postCreateListCustomers,
+  putUpdateCustomer
 }

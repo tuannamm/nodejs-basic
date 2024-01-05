@@ -27,8 +27,19 @@ const createListCustomersService = async (listCustomers) => {
   }
 }
 
+const updateCustomerService = async (req) => {
+  const {_id, name, address, phone, email, description} = req;
+  try {
+    return await Customer.updateOne({filter: _id}, {name, address, phone, email, description});
+  } catch(error) {
+    console.log(error);
+    return null;
+  }
+}
+
 module.exports = {
   createCustomerService,
   createListCustomersService,
-  getAllCustomersService
+  getAllCustomersService,
+  updateCustomerService
 }

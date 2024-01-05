@@ -1,6 +1,6 @@
 const express = require("express"); // commonjs
 const { getAllUsers, postCreateUser, putUpdateUser, deleteUser, postUploadSingleFile, postUploadMultipleFile } = require("../controllers/apiController");
-const {getAllCustomers, postCreateCustomer, postCreateListCustomers } = require("../controllers/customerController");
+const {getAllCustomers, postCreateCustomer, postCreateListCustomers, putUpdateCustomer } = require("../controllers/customerController");
 const routerAPI = express.Router();
 
 // khai bao route
@@ -34,6 +34,8 @@ routerAPI.get("/customers", getAllCustomers);
 routerAPI.post("/customer", postCreateCustomer);
 
 routerAPI.post("/customers", postCreateListCustomers);
+
+routerAPI.put("/customer", putUpdateCustomer)
 //---------------------------------------------------
 
 module.exports = routerAPI;
