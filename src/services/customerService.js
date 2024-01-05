@@ -7,8 +7,18 @@ const createCustomerService = async ({name, address, phone, email, description, 
     console.log(error);
     return null;
   }
-} 
+}
+
+const createListCustomersService = async (listCustomers) => {
+  try {
+    return await Customer.insertMany(listCustomers);
+  } catch(error) {
+    console.log(error);
+    return null;
+  }
+}
 
 module.exports = {
-  createCustomerService
+  createCustomerService,
+  createListCustomersService
 }
