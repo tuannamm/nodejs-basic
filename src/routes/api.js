@@ -42,4 +42,11 @@ routerAPI.delete("/customer", deleteCustomer);
 routerAPI.delete("/customers", deleteCustomers);
 //---------------------------------------------------
 
+// info
+routerAPI.get("/info", (req, res) => {
+  return res.status(200).json({
+    data: req.query
+  })
+})
+
 module.exports = routerAPI;
