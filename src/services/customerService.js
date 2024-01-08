@@ -1,9 +1,14 @@
 const Customer = require('../models/Customer');
 
-const getAllCustomersService = async (limit, page) => {
+const getAllCustomersService = async (limit, page, name) => {
   try {
     if (limit && page) {
       const skip = (page - 1) * limit;
+      if (name) {
+        return await Customer.find({
+          name: { $regex: '.*' + name + '.*' }
+        });
+      }
       return await Customer.find({}).skip(skip).limit(limit).exec();
     } else {
       return await Customer.find({});
