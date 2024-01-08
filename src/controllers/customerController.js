@@ -1,4 +1,5 @@
 const { uploadSingleFile } = require('../services/fileService');
+const aqp = require('api-query-params');
 
 const {
   createCustomerService,
@@ -10,12 +11,15 @@ const {
 } = require('../services/customerService');
 
 const getAllCustomers = async (req, res) => {
-  const { limit, page, name } = req.query;
-  const result = await getAllCustomersService(+limit, +page, name);
+  const { limit, filter } = aqp(req.query);
+
+  console.log(aqp(req.query));
+  const result = await getAllCustomersService(+limit, filter.page, filter);
   return res.status(200).json({
     errorCode: result ? 0 : -1,
     message: result ? 'Get all customers success' : 'Get all customers failed',
-    data: result
+    data: result,
+    totalCount: result.length
   });
 };
 
