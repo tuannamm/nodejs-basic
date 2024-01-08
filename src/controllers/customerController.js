@@ -12,8 +12,6 @@ const {
 
 const getAllCustomers = async (req, res) => {
   const { limit, filter } = aqp(req.query);
-
-  console.log(aqp(req.query));
   const result = await getAllCustomersService(+limit, filter.page, filter);
   return res.status(200).json({
     errorCode: result ? 0 : -1,
