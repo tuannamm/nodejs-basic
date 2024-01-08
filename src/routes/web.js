@@ -1,4 +1,4 @@
-const express = require("express"); // commonjs
+const express = require('express'); // commonjs
 const router = express.Router();
 
 const {
@@ -8,22 +8,22 @@ const {
   getUpdatePage,
   postUpdateUser,
   postDeleteUser,
-  postRemoveUser,
-} = require("../controllers/homeController");
+  postRemoveUser
+} = require('../controllers/homeController');
 
 // khai bao route
-router.get("/", getHomepage);
+router.get('/', getHomepage);
 
-router.post("/create-user", postCreateUser);
+router.post('/create-user', postCreateUser);
 
-router.get("/create", getCreatePage);
+router.get('/create', getCreatePage);
 
-router.get("/update/:id", getUpdatePage);
+router.get('/update/:id', getUpdatePage);
 
-router.post("/update-user", postUpdateUser);
+router.post('/update-user', postUpdateUser);
 
-router.post("/delete-user/:id", postDeleteUser);
+router.post('/delete-user/:id', postDeleteUser);
 
-router.post("/remove-user", postRemoveUser);
+router.post('/remove-user', postRemoveUser);
 
 module.exports = router;

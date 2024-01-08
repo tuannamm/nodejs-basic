@@ -11,11 +11,14 @@ const CustomerSchema = new mongoose.Schema(
     image: String,
     description: String
   },
-  { timestamps: false, statics: {
-    findByNam(name) {
-      return this.find({name: new RegExp(name, 'i')});
+  {
+    timestamps: false,
+    statics: {
+      findByNam(name) {
+        return this.find({ name: new RegExp(name, 'i') });
+      }
     }
-  } }
+  }
 );
 
 CustomerSchema.plugin(mongoose_delete, { overrideMethods: 'all' });
