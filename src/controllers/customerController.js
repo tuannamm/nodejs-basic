@@ -1,6 +1,6 @@
 const { uploadSingleFile } = require("../services/fileService");
 
-const { createCustomerService, createListCustomersService, getAllCustomersService, updateCustomerService } = require("../services/customerService");
+const { createCustomerService, createListCustomersService, getAllCustomersService, updateCustomerService, deleteCustomerService, deleteCustomersService } = require("../services/customerService");
 
 const getAllCustomers = async (req, res) => {
   const result = await getAllCustomersService();
@@ -44,9 +44,30 @@ const putUpdateCustomer = async (req, res) => {
   })
 }
 
+const deleteCustomer = async (req, res) => {
+  const result = await deleteCustomerService(req.body._id);
+  return res.status(200).json({
+    errorCode: result ? 0 : -1,
+    message: result ? "Delete customer success" : "Delete customer failed",
+    data: result
+  })
+};
+
+const deleteCustomers = async (req, res) => {
+  const result = await deleteCustomersService(req.body.ids);
+
+  return res.status(200).json({
+    errorCode: result ? 0 : -1,
+    message: result ? "Delete customers success" : "Delete customers failed",
+    data: result
+  })
+}
+
 module.exports = {
   getAllCustomers,
   postCreateCustomer,
   postCreateListCustomers,
-  putUpdateCustomer
+  putUpdateCustomer,
+  deleteCustomer,
+  deleteCustomers
 }

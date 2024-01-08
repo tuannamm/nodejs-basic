@@ -1,15 +1,25 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const mongoose_delete = require('mongoose-delete');
 
-const customerSchema = new mongoose.Schema({
-  name: {type: String, required: true},
-  email: String,
-  city: String,
-  phone: String,
-  address: String,
-  image: String,
-  description: String,
-}, {timestamps: true})
+const CustomerSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    email: String,
+    city: String,
+    phone: String,
+    address: String,
+    image: String,
+    description: String
+  },
+  { timestamps: false, statics: {
+    findByNam(name) {
+      return this.find({name: new RegExp(name, 'i')});
+    }
+  } }
+);
 
-const User = mongoose.model("customer", customerSchema);
+CustomerSchema.plugin(mongoose_delete, { overrideMethods: 'all' });
+
+const User = mongoose.model('customer', CustomerSchema);
 
 module.exports = User;
