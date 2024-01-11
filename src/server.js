@@ -48,8 +48,15 @@ app.use('/v1/api', apiRoutes);
     const dbName = process.env.DB_NAME;
     await client.connect();
     console.log('Connected successfully to server');
-    // const db = client.db(dbName);
-    // const collection = db.collection('users');
+    const db = client.db(dbName);
+    const collection = db.collection('customers');
+
+    collection.insertOne({ name: 'NTTNnam' });
+
+    const test = await collection.findOne({ name: 'NTTNnam' });
+
+    console.log('test find', test);
+
     app.listen(port, hostname, () => {
       console.log(`App is running at port ${port}`);
     });
