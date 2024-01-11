@@ -1,12 +1,13 @@
-const express = require("express"); // commonjs
-require("dotenv").config(); // load bien moi truong
+const express = require('express'); // commonjs
+require('dotenv').config(); // load bien moi truong
 
-const configViewEngine = require("./config/viewEngine");
-const webRoutes = require("./routes/web");
-const apiRoutes = require("./routes/api");
-const fileUpload = require("express-fileupload");
+const configViewEngine = require('./config/viewEngine');
+const webRoutes = require('./routes/web');
+const apiRoutes = require('./routes/api');
+const fileUpload = require('express-fileupload');
 
-const connection = require("./config/database");
+const connection = require('./config/database');
+const { MongoClient } = require('mongodb');
 
 const app = express(); // app express
 const port = process.env.PORT || 8080; // port
@@ -23,10 +24,10 @@ app.use(express.urlencoded({ extended: true }));
 configViewEngine(app);
 
 // khai bao route
-app.use("/", webRoutes);
-app.use("/v1/api", apiRoutes);
+app.use('/', webRoutes);
+app.use('/v1/api', apiRoutes);
 
-
+/* mongoose
 (async () => {
   try {
     await connection();
@@ -37,4 +38,22 @@ app.use("/v1/api", apiRoutes);
     console.log("error connection database", error);
   }
 })();
+*/
 
+// mongodb
+(async () => {
+  try {
+    const url = process.env.DB_HOST_WITH_DRIVER;
+    const client = new MongoClient(url);
+    const dbName = process.env.DB_NAME;
+    await client.connect();
+    console.log('Connected successfully to server');
+    // const db = client.db(dbName);
+    // const collection = db.collection('users');
+    app.listen(port, hostname, () => {
+      console.log(`App is running at port ${port}`);
+    });
+  } catch (error) {
+    console.log('error connection database', error);
+  }
+})();
