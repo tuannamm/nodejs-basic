@@ -27,18 +27,17 @@ configViewEngine(app);
 app.use('/', webRoutes);
 app.use('/v1/api', apiRoutes);
 
-/* mongoose
-(async () => {
-  try {
-    await connection();
-    app.listen(port, hostname, () => {
-      console.log(`App is running at port ${port}`);
-    });
-  } catch (error) {
-    console.log("error connection database", error);
-  }
-})();
-*/
+// /* mongoose
+// (async () => {
+//   try {
+//     await connection();
+//     app.listen(port, hostname, () => {
+//       console.log(`App is running at port ${port}`);
+//     });
+//   } catch (error) {
+//     console.log('error connection database', error);
+//   }
+// })();
 
 // mongodb
 (async () => {
@@ -54,6 +53,15 @@ app.use('/v1/api', apiRoutes);
     collection.insertOne({ name: 'NTTNnam' });
 
     const test = await collection.findOne({ name: 'NTTNnam' });
+
+    const test2 = await collection.insertOne({
+      name: 'NTTNnam',
+      age: 20,
+      address: {
+        city: 'HCM',
+        country: 'VN'
+      }
+    });
 
     console.log('test find', test);
 
